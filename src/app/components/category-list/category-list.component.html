@@ -1,0 +1,29 @@
+<div class="page-container">
+  <h2 class="page-title">Category List</h2>
+
+  <button class="add-button" routerLink="/categories/add">Add Category</button>
+
+  <table mat-table [dataSource]="categories" class="mat-elevation-z8" style="width: 100%; margin-top: 1rem;">
+
+    <ng-container matColumnDef="categoryId">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let category">{{ category.categoryId }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let category">{{ category.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let category">
+        <button class="edit-button" [routerLink]="['/categories/edit', category.categoryId]">Edit</button>
+        <button class="delete-button" (click)="deleteCategory(category.categoryId)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

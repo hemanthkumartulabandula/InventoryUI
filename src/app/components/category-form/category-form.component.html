@@ -1,0 +1,13 @@
+<div class="form-container">
+    <h2 class="form-title">{{ isEditMode ? 'Edit Category' : 'Add Category' }}</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>Name:</label>
+      <input formControlName="name" type="text" required />
+  
+      <button type="submit" class="submit-button">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+    </form>
+  </div>
+  

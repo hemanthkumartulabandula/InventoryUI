@@ -1,0 +1,54 @@
+.ig-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fafafa;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .brand {
+    font-size: 20px;
+    font-weight: bold;
+    color: #262626;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #262626;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .nav-links a.active,
+  .nav-links a:hover {
+    background-color: #efefef;
+  }
+
+  .user-info {
+  font-weight: 500;
+  color: #333;
+  padding: 6px 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+
+.user-info:hover {
+  background-color: #d5d5d5;
+  cursor: default;
+}

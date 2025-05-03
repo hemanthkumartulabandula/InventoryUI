@@ -1,0 +1,43 @@
+.form-container {
+    margin: 30px;
+    max-width: 500px;
+  }
+  
+  .form-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #003366; /* matches Add button blue */
+    border-left: 6px solid #2196f3;
+    padding-left: 12px;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin: 8px 0 4px;
+  }
+  
+  input, select {
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .submit-button {
+    background-color: #003366;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .submit-button:hover {
+    background-color: #002244;
+  }
+  

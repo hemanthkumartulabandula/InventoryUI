@@ -1,0 +1,31 @@
+<div class="form-container">
+  <h2 class="form-title">{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input formControlName="name" type="text" required />
+
+    <label>Description:</label>
+    <input formControlName="description" type="text" />
+
+    <label>Quantity:</label>
+    <input formControlName="quantity" type="number" required />
+
+    <label>Price:</label>
+    <input formControlName="price" type="number" required />
+
+    <label>Category:</label>
+    <select formControlName="categoryId">
+      <option *ngFor="let cat of categories" [value]="cat.categoryId">{{ cat.name }}</option>
+    </select>
+
+    <label>Supplier:</label>
+    <select formControlName="supplierId">
+      <option *ngFor="let sup of suppliers" [value]="sup.supplierId">{{ sup.name }}</option>
+    </select>
+
+    <button type="submit" class="submit-button">
+      {{ isEditMode ? 'Update' : 'Create' }}
+    </button>
+  </form>
+</div>

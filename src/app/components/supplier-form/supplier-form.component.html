@@ -1,0 +1,19 @@
+<div class="form-container">
+    <h2 class="form-title">{{ isEditMode ? 'Edit Supplier' : 'Add Supplier' }}</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>Name:</label>
+      <input formControlName="name" type="text" required />
+  
+      <label>Email:</label>
+      <input formControlName="contactEmail" type="email" required />
+  
+      <label>Phone:</label>
+      <input formControlName="phone" type="text" required />
+  
+      <button type="submit" class="submit-button">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+    </form>
+  </div>
+  

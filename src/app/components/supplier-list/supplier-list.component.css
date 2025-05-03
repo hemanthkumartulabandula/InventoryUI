@@ -1,0 +1,37 @@
+
+.page-container {
+  margin: 30px;
+}
+
+.page-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #d15833;
+  margin-bottom: 16px;
+  border-left: 6px solid #b72d03;
+  padding-left: 12px;
+}
+
+.add-button {
+  background-color: #003366;
+  color: white;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  border: none;
+}
+
+.edit-button {
+  background-color: #4caf50;
+  color: black;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 8px;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+}

@@ -1,0 +1,69 @@
+/* Full-page gradient background */
+body, html {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(to right, #4a148c, #1a237e);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Centered form card */
+  .login-container {
+    background-color: white;
+    padding: 32px;
+    max-width: 400px;
+    margin: 80px auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Form title */
+  .form-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4a148c;
+    margin-bottom: 20px;
+    border-left: 6px solid #1a237e;
+    padding-left: 12px;
+  }
+  
+  /* Inputs and labels */
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 500;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  
+  /* Submit button */
+  .login-button {
+    background-color: #1a237e;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    font-weight: bold;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #0d155e;
+  }
+  
+  /* Error message */
+  .error-msg {
+    margin-top: 10px;
+    color: red;
+    font-weight: 500;
+    text-align: center;
+  }
+  
