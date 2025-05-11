@@ -1,4 +1,4 @@
-/* Full-page gradient background */
+
 body, html {
     height: 100%;
     margin: 0;
@@ -6,7 +6,7 @@ body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  /* Centered form card */
+  
   .login-container {
     background-color: white;
     padding: 32px;
@@ -16,7 +16,7 @@ body, html {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   }
   
-  /* Form title */
+
   .form-title {
     font-size: 24px;
     font-weight: bold;
@@ -26,7 +26,7 @@ body, html {
     padding-left: 12px;
   }
   
-  /* Inputs and labels */
+ 
   label {
     display: block;
     margin-top: 12px;
@@ -42,7 +42,7 @@ body, html {
     margin-bottom: 12px;
   }
   
-  /* Submit button */
+ 
   .login-button {
     background-color: #1a237e;
     color: white;
@@ -59,7 +59,7 @@ body, html {
     background-color: #0d155e;
   }
   
-  /* Error message */
+ 
   .error-msg {
     margin-top: 10px;
     color: red;

@@ -1,13 +1,24 @@
 <div class="form-container">
-    <h2 class="form-title">{{ isEditMode ? 'Edit Category' : 'Add Category' }}</h2>
-  
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <label>Name:</label>
-      <input formControlName="name" type="text" required />
-  
-      <button type="submit" class="submit-button">
-        {{ isEditMode ? 'Update' : 'Create' }}
-      </button>
-    </form>
-  </div>
-  
+  <h2 class="form-title">{{ isEditMode ? 'Edit Category' : 'Add Category' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input formControlName="name" type="text" />
+
+    <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="error-message">
+      <div *ngIf="form.get('name')?.errors?.['required']">
+        Category name is required.
+      </div>
+      <div *ngIf="form.get('name')?.errors?.['minlength']">
+        Category name must be at least 3 characters.
+      </div>
+      <div *ngIf="form.get('name')?.errors?.['pattern']">
+        Only letters, spaces, and punctuation are allowed.
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="form.invalid">
+      {{ isEditMode ? 'Update' : 'Create' }}
+    </button>
+  </form>
+</div>

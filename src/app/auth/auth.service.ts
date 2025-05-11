@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   private apiUrl = 'http://localhost:5070/api/auth';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {}
 
-  // 🔐 Login and store token
+
   login(email: string, password: string): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email, password })
       .pipe(
@@ -22,18 +23,17 @@ export class AuthService {
       );
   }
 
-  //Logout and redirect
+  
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 
-  // 🔑 Get the stored token
+ 
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
-  // ogin status
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
@@ -48,6 +48,18 @@ export class AuthService {
     } catch (error) {
       return null;
     }
+  }
+
+  getUserRole(): string | null {
+  const token = this.getToken();
+  if (!token) return null;
+
+  try {
+    const decoded = jwtDecode<{ [key: string]: any }>(token);
+    return decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || null;
+  } catch (error) {
+    return null;
+  }
   }
 
 }

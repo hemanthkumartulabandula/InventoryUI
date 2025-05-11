@@ -1,19 +1,37 @@
 <div class="form-container">
-    <h2 class="form-title">{{ isEditMode ? 'Edit Supplier' : 'Add Supplier' }}</h2>
+  <h2 class="form-title">{{ isEditMode ? 'Edit Supplier' : 'Add Supplier' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
   
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <label>Name:</label>
-      <input formControlName="name" type="text" required />
-  
-      <label>Email:</label>
-      <input formControlName="contactEmail" type="email" required />
-  
-      <label>Phone:</label>
-      <input formControlName="phone" type="text" required />
-  
-      <button type="submit" class="submit-button">
-        {{ isEditMode ? 'Update' : 'Create' }}
-      </button>
-    </form>
-  </div>
-  
+    <label>Name:</label>
+    <input formControlName="name" type="text" />
+    <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="error-message">
+      <div *ngIf="form.get('name')?.errors?.['required']">Name is required.</div>
+      <div *ngIf="form.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</div>
+      <div *ngIf="form.get('name')?.errors?.['pattern']">Only letters and spaces are allowed.</div>
+    </div>
+
+
+    <label>Email:</label>
+    <input formControlName="contactEmail" type="email" />
+    <div *ngIf="form.get('contactEmail')?.touched && form.get('contactEmail')?.invalid" class="error-message">
+      <div *ngIf="form.get('contactEmail')?.errors?.['required']">Email is required.</div>
+      <div *ngIf="form.get('contactEmail')?.errors?.['email']">Invalid email format.</div>
+      <div *ngIf="form.get('contactEmail')?.errors?.['pattern']">Only Gmail addresses are allowed.</div>
+    </div>
+
+
+    <label>Phone:</label>
+    <input formControlName="phone" type="text" />
+    <div *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid" class="error-message">
+      <div *ngIf="form.get('phone')?.errors?.['required']">Phone number is required.</div>
+      <div *ngIf="form.get('phone')?.errors?.['pattern']">Phone must be exactly 10 digits.</div>
+    </div>
+
+    
+    <button type="submit" class="submit-button" [disabled]="form.invalid">
+      {{ isEditMode ? 'Update' : 'Create' }}
+    </button>
+  </form>
+</div>

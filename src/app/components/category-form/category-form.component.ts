@@ -25,17 +25,21 @@ export class CategoryFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      categoryId: [0],
-      name: ['', Validators.required]
-    });
+  this.form = this.fb.group({
+    categoryId: [0],
+    name: ['', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.pattern(/^[a-zA-Z\s\.\,\-']{3,}$/)
+    ]]
+  });
 
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.isEditMode = true;
-      this.categoryService.getById(id).subscribe(category => this.form.patchValue(category));
-    }
+  const id = Number(this.route.snapshot.paramMap.get('id'));
+  if (id) {
+    this.isEditMode = true;
+    this.categoryService.getById(id).subscribe(category => this.form.patchValue(category));
   }
+}
 
   onSubmit(): void {
     const category: Category = this.form.value;

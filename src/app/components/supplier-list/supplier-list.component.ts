@@ -5,6 +5,8 @@ import { Supplier } from '../../models/supplier';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { SignalrService } from '../../services/signalr.service';
 
 @Component({
   selector: 'app-supplier-list',
@@ -20,12 +22,21 @@ import { RouterModule } from '@angular/router';
 })
 export class SupplierListComponent {
   suppliers: Supplier[] = [];
-  displayedColumns: string[] = ['supplierId', 'name', 'email', 'phone', 'actions'];
+  displayedColumns: string[] = ['supplierId', 'name', 'email', 'phone'];
 
-  constructor(private supplierService: SupplierService) {}
+  constructor(private supplierService: SupplierService, public authService: AuthService, private signalrService: SignalrService) {}
 
   ngOnInit(): void {
+    
+    if (this.authService.getUserRole() === 'Admin') {
+      this.displayedColumns.push('actions');
+    }
     this.loadSuppliers();
+
+    this.signalrService.supplierAdded$.subscribe(() => this.loadSuppliers());
+    this.signalrService.supplierUpdated$.subscribe(() => this.loadSuppliers());
+    this.signalrService.supplierDeleted$.subscribe(() => this.loadSuppliers());
+
   }
 
   loadSuppliers(): void {

@@ -7,22 +7,23 @@ import { SupplierFormComponent } from './components/supplier-form/supplier-form.
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { AuthLoginComponent } from './auth/auth-login/auth-login.component';
 import { authGuard } from './auth/auth.guard';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 
 export const routes: Routes = [
     { path: 'products', component: ProductListComponent, canActivate: [authGuard] },
     { path: 'products/add', component: ProductFormComponent, canActivate: [authGuard] },
-    { path: 'products/edit/:id', component: ProductFormComponent, canActivate: [authGuard] },
+    { path: 'products/edit/:id', component: ProductFormComponent, canActivate: [authGuard], data: { role: 'Admin' } },
 
     { path: 'categories', component: CategoryListComponent, canActivate: [authGuard] },
     { path: 'categories/add', component: CategoryFormComponent, canActivate: [authGuard] },
-    { path: 'categories/edit/:id', component: CategoryFormComponent, canActivate: [authGuard] },
+    { path: 'categories/edit/:id', component: CategoryFormComponent, canActivate: [authGuard], data: { role: 'Admin' } },
 
     { path: 'suppliers', component: SupplierListComponent, canActivate: [authGuard] },
     { path: 'suppliers/add', component: SupplierFormComponent, canActivate: [authGuard] },
-    { path: 'suppliers/edit/:id', component: SupplierFormComponent, canActivate: [authGuard] },
+    { path: 'suppliers/edit/:id', component: SupplierFormComponent, canActivate: [authGuard], data: { role: 'Admin' } },
 
-
+    { path: 'unauthorized', component: UnauthorizedComponent },
     { path: 'login', component: AuthLoginComponent },
     { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

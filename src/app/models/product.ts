@@ -8,7 +8,7 @@ export interface Product {
     categoryId: number;
     supplierId: number;
   
-    // Optional (used in ProductReadDto response)
+  
     categoryName?: string;
     supplierName?: string;
     

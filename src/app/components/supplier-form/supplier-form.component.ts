@@ -27,9 +27,19 @@ export class SupplierFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       supplierId: [0],
-      name: ['', Validators.required],
-      contactEmail: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required]
+      name: ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(/^[a-zA-Z\s]+$/) 
+      ]],
+      contactEmail: ['', [
+    Validators.required,
+    Validators.email  
+  ]],
+      phone: ['', [
+        Validators.required,
+        Validators.pattern(/^\d{10}$/) 
+      ]]
     });
 
     const id = Number(this.route.snapshot.paramMap.get('id'));

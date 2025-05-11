@@ -2,30 +2,59 @@
   <h2 class="form-title">{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h2>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label>Name:</label>
-    <input formControlName="name" type="text" required />
 
+   
+    <label>Name:</label>
+    <input formControlName="name" type="text" />
+    <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="error-message">
+      <div *ngIf="form.get('name')?.errors?.['required']">Product name is required.</div>
+      <div *ngIf="form.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</div>
+    </div>
+
+  
     <label>Description:</label>
     <input formControlName="description" type="text" />
 
+   
     <label>Quantity:</label>
-    <input formControlName="quantity" type="number" required />
+    <input formControlName="quantity" type="number" />
+    <div *ngIf="form.get('quantity')?.touched && form.get('quantity')?.invalid" class="error-message">
+      <div *ngIf="form.get('quantity')?.errors?.['required']">Quantity is required.</div>
+      <div *ngIf="form.get('quantity')?.errors?.['min']">Quantity must be 0 or more.</div>
+    </div>
 
+   
     <label>Price:</label>
-    <input formControlName="price" type="number" required />
+    <input formControlName="price" type="number" />
+    <div *ngIf="form.get('price')?.touched && form.get('price')?.invalid" class="error-message">
+      <div *ngIf="form.get('price')?.errors?.['required']">Price is required.</div>
+      <div *ngIf="form.get('price')?.errors?.['min']">Price must be 0 or more.</div>
+    </div>
 
+    
     <label>Category:</label>
     <select formControlName="categoryId">
+      <option value="" *ngIf="!isEditMode">-- Select Category --</option>
       <option *ngFor="let cat of categories" [value]="cat.categoryId">{{ cat.name }}</option>
     </select>
+    <div *ngIf="form.get('categoryId')?.touched && form.get('categoryId')?.invalid" class="error-message">
+      <div *ngIf="form.get('categoryId')?.errors?.['required']">Category is required.</div>
+    </div>
 
+   
     <label>Supplier:</label>
     <select formControlName="supplierId">
+      <option value="" *ngIf="!isEditMode">-- Select Supplier --</option>
       <option *ngFor="let sup of suppliers" [value]="sup.supplierId">{{ sup.name }}</option>
     </select>
+    <div *ngIf="form.get('supplierId')?.touched && form.get('supplierId')?.invalid" class="error-message">
+      <div *ngIf="form.get('supplierId')?.errors?.['required']">Supplier is required.</div>
+    </div>
 
-    <button type="submit" class="submit-button">
+   
+    <button type="submit" class="submit-button" [disabled]="form.invalid">
       {{ isEditMode ? 'Update' : 'Create' }}
     </button>
+
   </form>
 </div>

@@ -5,6 +5,8 @@ import { CategoryService } from '../../services/category.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { SignalrService } from '../../services/signalr.service';
 
 @Component({
   selector: 'app-category-list',
@@ -20,12 +22,21 @@ import { RouterModule } from '@angular/router';
 })
 export class CategoryListComponent {
   categories: Category[] = [];
-  displayedColumns: string[] = ['categoryId', 'name', 'actions'];
+  displayedColumns: string[] = ['categoryId', 'name'];
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, public authService: AuthService, private signalrService: SignalrService) {}
 
   ngOnInit(): void {
+
+    if (this.authService.getUserRole() === 'Admin') {
+      this.displayedColumns.push('actions');
+    }
     this.loadCategories();
+
+    this.signalrService.categoryAdded$.subscribe(() => this.loadCategories());
+    this.signalrService.categoryUpdated$.subscribe(() => this.loadCategories());
+    this.signalrService.categoryDeleted$.subscribe(() => this.loadCategories());
+
   }
 
   loadCategories(): void {

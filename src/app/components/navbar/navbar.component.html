@@ -21,15 +21,15 @@
   -->
 
     <div class="nav-links">
-      <!-- Show Login only when NOT logged in -->
+      
       <a routerLink="/login" *ngIf="!authService.isLoggedIn()">🔓 Login</a>
   
-      <!-- Show these links only when logged in -->
+   
       <a routerLink="/products" *ngIf="authService.isLoggedIn()">🧾 Products</a>
       <a routerLink="/categories" *ngIf="authService.isLoggedIn()">🏷️ Categories</a>
       <a routerLink="/suppliers" *ngIf="authService.isLoggedIn()">🏭 Suppliers</a>
   
-      <!-- Logout button -->
+      
       <a href="#" *ngIf="authService.isLoggedIn()" (click)="authService.logout()">🔐 Logout</a>
 
       <span *ngIf="authService.isLoggedIn()" class="user-info">👤 {{ authService.getLoggedInUser() }}</span>
