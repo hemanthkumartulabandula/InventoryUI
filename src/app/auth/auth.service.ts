@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5070/api/auth';
+  private apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {}
 
